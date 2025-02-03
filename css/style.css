@@ -1,0 +1,112 @@
+:root {
+    --primary: #ff6b6b;
+    --secondary: #4ecdc4;
+    --accent: #ffe66d;
+    --bg: #1a1a2e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    overflow: hidden;
+    position: relative;
+}
+
+.orb {
+    position: fixed;
+    width: 300vw;
+    height: 300vw;
+    background: radial-gradient(circle, 
+        rgba(78,205,196,0.2) 0%,
+        rgba(255,107,107,0.1) 50%,
+        rgba(26,26,46,0) 100%);
+    animation: pulse 8s ease-in-out infinite;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 0 15px var(--primary),
+                 0 0 30px var(--secondary),
+                 0 0 45px var(--accent),
+                 0 0 60px rgba(255,230,109,0.5);
+    -webkit-text-stroke: 2px rgba(255,255,255,0.3);
+    animation: float 3s ease-in-out infinite, glow-pulse 2s ease-in-out infinite;
+    position: relative;
+    text-align: center;
+    z-index: 3;
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        opacity: 0.95;
+        text-shadow: 0 0 15px var(--primary),
+                     0 0 30px var(--secondary),
+                     0 0 45px var(--accent);
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 25px var(--primary),
+                     0 0 45px var(--secondary),
+                     0 0 65px var(--accent);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.particles span {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: particle 4s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes particle {
+    0% {
+        transform: translate(0,0) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(
+            calc(var(--i) * 100px - 50px), 
+            calc(var(--i) * -100px + 50px)
+        ) scale(0);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .name {
+        font-size: 4rem;
+    }
+}
